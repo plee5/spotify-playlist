@@ -13,7 +13,7 @@ function TodoItem({
     <div className="card todo-item-container">
       <div className="todo-item-container-left">
         <button onClick={toggleIsCompleted} type="button" className="todo-item-complete-button">
-{          isPlaying?
+{          isPlaying ?
              <div className="buttonplay"/>
              : <div className="buttonpause"/>
           }
