@@ -1,7 +1,7 @@
 import React from 'react';
 import './playlist.css';
 
-function TodoItem({
+function Playlist({
   description,
   sessionsCompleted,
   isCompleted,
@@ -26,4 +26,4 @@ function TodoItem({
   );
 }
 
-export default TodoItem;
+export default Playlist;

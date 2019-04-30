@@ -2,6 +2,7 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Playlist from "./Playlist.jsx";
+import Search from "./Search.jsx";
 
 // function App() {
 
@@ -51,14 +52,15 @@ class App extends React.Component {
         <header className="App-header">
           <p>
           Spotify Playlist
+          <Search/>
           </p>
-          <div>
+          {/* <div>
           {
             songs.map((it) => (
                 <Playlist name = {it.name} isPlaying = {it.songIsPlaying} startPlaying = {() => this.startPlaying(this.id)} /> //will need to map an array
             ))
           }
-          </div>
+          </div> */}
         </header>
         
       </div>
