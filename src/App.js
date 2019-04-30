@@ -2,7 +2,6 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Playlist from "./Playlist.jsx";
-import TodoInput from './TodoInput.jsx';
 
 // function App() {
 
