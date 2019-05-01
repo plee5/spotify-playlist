@@ -5,14 +5,13 @@ class Search extends React.Component {
         super(props);
         this.onChange = this.onChange.bind(this);
         this.keyPress = this.keyPress.bind(this);
-        this.token = "BQC20J_nHSQBbIKMQYbwNy89iP-MzACEQPsgUhppx_aK85jPYKigdkBJvgbMJD0-ME-thqf8F86q9nQa1CKSZP_8F42ttq25uoFXZ_PfasNJz6rk4VzX4tOnfo4Q-q6AJ9fpN4_57n9NcA";
+        this.token = "BQCg4IKlmx5FC0EuCCW6_hW9hbrCwcQLTdbT4hbLDd2G-P1FRGt_zLWExNDWOVFPhg09sDGmwVlJho9-4pmwwUYXaTz8ctVv9LPZGWsdZxqf_0uQhxE3oocone-x4Uw0F__gmjuoSqICAbq1FmcytZYEkjwcU36S3Q";
         this.state = {
             query: "",
             people: []
         };
     }
     onChange = e => {
-        alert("hello");
       const { value } = e.target;
       this.setState({
         query: value
@@ -21,16 +20,14 @@ class Search extends React.Component {
 
     keyPress = e => {
         e.preventDefault();
-        alert("hellooooo");
-        if(e.keyCode == 13){
-            console.log('value', e.target.value);
-            this.search(e.target.value);
-         }
+          console.log('value',this.state.query);
+          this.search(this.state.query);
       };
   
     search = query => {
-        const token = "BQC20J_nHSQBbIKMQYbwNy89iP-MzACEQPsgUhppx_aK85jPYKigdkBJvgbMJD0-ME-thqf8F86q9nQa1CKSZP_8F42ttq25uoFXZ_PfasNJz6rk4VzX4tOnfo4Q-q6AJ9fpN4_57n9NcA";
+        const token = "BQCg4IKlmx5FC0EuCCW6_hW9hbrCwcQLTdbT4hbLDd2G-P1FRGt_zLWExNDWOVFPhg09sDGmwVlJho9-4pmwwUYXaTz8ctVv9LPZGWsdZxqf_0uQhxE3oocone-x4Uw0F__gmjuoSqICAbq1FmcytZYEkjwcU36S3Q";
         const url = 'https://api.spotify.com/v1/search?access_token='+token+'&query='+query+'&type=track&limit=1';
+        console.log(url);
         fetch(url)
             .then(results => results.json())
             .then(data => {
@@ -46,13 +43,15 @@ class Search extends React.Component {
   
     render() {
       return (
-        <form>
+        <form
+          onSubmit={this.keyPress}
+        >
+
           <input
             type="text"
             className="search-box"
             placeholder="Search for..."
             onChange={this.onChange}
-            onSubmit={this.keyPress}
           />
 
           {/* {this.state.people.map(person => (
