@@ -5,6 +5,8 @@
   "dependencies": {
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "react-player-controls": "^1.1.0",
+    "react-rangeslider": "^2.2.0",
     "react-scripts": "3.0.0"
   },
   "scripts": {

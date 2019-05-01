@@ -2,7 +2,8 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Playlist from "./Playlist.jsx";
-import TodoInput from './TodoInput.jsx';
+import MediaControl from './components/MediaControl.jsx'
+//import TodoInput from './TodoInput.jsx';
 
 // function App() {
 
@@ -53,6 +54,9 @@ class App extends React.Component {
           <p>
           Spotify Playlist
           </p>
+          <div>
+            <MediaControl />
+          </div>
           <div>
           {
             songs.map((it) => (

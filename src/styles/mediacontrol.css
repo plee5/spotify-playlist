@@ -1,0 +1,22 @@
+.media-button {
+    border: 0;
+    background: none;
+    color: white;
+    cursor: pointer;
+}
+
+.media-button > svg {
+    width: 24px;
+    height: 24px;
+}
+
+.media-button > svg:hover {
+    width: 25px;
+    height: 25px;
+}
+  
+/* bad for a11y but looks better 🤷‍ */
+/* good fix: https://medium.freecodecamp.org/how-to-make-your-fancy-svg-button-accessible-83c9172c3c15 */
+.media-button:focus {
+    outline: 0;
+}
