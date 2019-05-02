@@ -47,11 +47,12 @@ class App extends React.Component {
     this.setState({playlistSongs: [...curPlaylist, newSong]})
   }
 
+
   render() {
     if (!this.state.authenticated) {
       return (
         <a
-          href={`https://accounts.spotify.com/authorize/?client_id=ac9ec319b658424d8aa1e41317e7c70f&response_type=token&redirect_uri=${window
+          href={`https://accounts.spotify.com/authorize/?client_id=613be50275044eec972808a1d79ac480&response_type=token&redirect_uri=${window
             .location.origin +
             window.location
               .pathname}&scope=user-read-playback-state user-modify-playback-state user-top-read user-read-private`}
