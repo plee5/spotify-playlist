@@ -40,16 +40,11 @@ class SearchComp extends React.Component {
     
     
     async startPlayback(songId) {
-        if(!this.state.isPlaying) {
-          await this.spotifyClient.play({
-              device_id: this.state.currentDevice,
-              uris: [`spotify:track:${songId}`]
-          });
-          this.setState({
-            isPlaying: true
-          });
-        }
-    }
+        await this.spotifyClient.play({
+            device_id: this.state.currentDevice,
+            uris: [`spotify:track:${songId}`]
+        });
+      }    
 
       async onSubmit(ev) {
         ev.preventDefault();

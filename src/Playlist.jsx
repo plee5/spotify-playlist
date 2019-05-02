@@ -62,20 +62,20 @@ class Playlist extends React.Component {
                             <img class="ui avatar image" src={song.album.images[0].url} />
                         </div> */}
                         <p className="header">{song.songName}</p>
-                                <div className="meta">
-                                    {song.artistNames}
-                                    <div class="ui icon right floated buttons">
-                                        <button class="ui button" onClick={e => this.startPlayback(song.songId)}>
-                                            <i class="play icon"></i>
-                                        </button>
-                                        <button class="ui button" onClick={e => this.pausePlayback(song.songId)}>
-                                            <i class="pause icon"></i>
-                                        </button>
-                                        <button class="ui button">
-                                            <i class="x icon"></i>
-                                        </button>
-                                    </div>
+                            <div className="meta">
+                                {song.artistNames}
+                                <div class="ui icon right floated buttons">
+                                    <button class="ui button" onClick={e => this.startPlayback(song.songId)}>
+                                        <i class="play icon"></i>
+                                    </button>
+                                    <button class="ui button" onClick={e => this.pausePlayback(song.songId)}>
+                                        <i class="pause icon"></i>
+                                    </button>
+                                    <button class="ui button">
+                                        <i class="x icon"></i>
+                                    </button>
                                 </div>
+                            </div>
                         </div>
                     ))}
                 </div>
