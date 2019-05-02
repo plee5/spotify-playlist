@@ -85,7 +85,7 @@ class SearchComp extends React.Component {
                                 </span>
                                 </div>
                                 <button class="ui right floated green button"
-                                    onClick={this.props.addSong(song.name, song.artists.name, song.id)}>Add</button>
+                                    onClick={() => this.props.addSong(song.name, song.artists.name, song.id)}>Add</button>
                             </div>
                             </div>
                         ))}

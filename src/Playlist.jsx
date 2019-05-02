@@ -36,12 +36,12 @@ class Playlist extends React.Component {
                         {/* <div className="image">
                             <img class="ui avatar image" src={song.album.images[0].url} />
                         </div> */}
-                        <p className="header">{song.name}</p>
-                                <div className="meta">
-                                {/* <span className="date">
-                                    {song.artists.map(artist => artist.name).join(", ")}
+                        <p className="header">{song.songName}</p>
+                                {/* <div className="meta">
+                                <span className="date">
+                                    {song.artist}
                                 </span> */}
-                                </div>
+                                {/* </div> */}
                         </div>
                     ))}
                 </div>

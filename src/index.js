@@ -34,13 +34,14 @@ class App extends React.Component {
     }
   }
 
-  async addSongToPlaylist(songName, artistNames, songId) {
-    const newSong = {
+  addSongToPlaylist(songName, artistNames, songId) {
+    let newSong = {
       songName: songName,
       artistNames: artistNames,
       songId: songId
     }
     let curPlaylist = this.state.playlistSongs;
+    console.log(newSong);
     this.setState({playlistSongs: [...curPlaylist, newSong]})
   }
 
@@ -61,7 +62,7 @@ class App extends React.Component {
       <div className="ui right aligned category search">
         <div class="ui two column grid">
           <div class="column">
-            <SearchComp addSong={() => this.addSongToPlaylist}/>
+            <SearchComp addSong={this.addSongToPlaylist}/>
           </div>
           <div class="column">
             <Playlist playlist={this.state.playlistSongs}/>
