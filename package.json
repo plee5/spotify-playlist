@@ -10,7 +10,7 @@
     "react-player-controls": "^1.1.0",
     "react-scripts": "2.1.8",
     "semantic-ui-react": "^0.86.0",
-    "spotify-web-api-js": "1.2.0"
+    "spotify-web-api-js": "^1.2.0"
   },
   "devDependencies": {
     "typescript": "3.3.3"

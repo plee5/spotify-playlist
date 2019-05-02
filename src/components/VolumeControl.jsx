@@ -58,6 +58,7 @@ const SliderBar = ({ direction, value, style }) => (
 class VolumeControl extends React.Component {
     constructor(props) {
         super(props);
+        this.changeVolume = this.changeVolume.bind(this);
 
         this.state = {
             direction: Direction.HORIZONTAL,
@@ -72,7 +73,14 @@ class VolumeControl extends React.Component {
         
     }
 
-    
+    async changeVolume(newValue) {
+        await this.props.spotify.setVolume(newValue * 100, {
+            device_id: this.props.device
+        });
+        this.setState(() => ({
+             value: newValue 
+            }));
+    }
 
     render() {
         const {
@@ -95,7 +103,7 @@ class VolumeControl extends React.Component {
             <Slider
                 isEnabled={isEnabled}
                 direction={direction}
-                onChange={newValue => this.setState(() => ({ value: newValue }))}
+                onChange={newValue => this.changeVolume(newValue)}
                 onChangeStart={startValue => this.setState(() => ({ lastValueStart: startValue }))}
                 onChangeEnd={endValue => this.setState(() => ({ lastValueEnd: endValue }))}
                 onIntent={intent => this.setState(() => ({ lastIntent: intent }))}

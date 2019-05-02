@@ -19,10 +19,7 @@ class MediaControl extends React.Component {
             isPlaying: false,
             authenticated: false,
             devices: [],
-            songs: [],
-            search: "",
             currentDevice: "",
-            playlistSongs: []
         }
     }
 
@@ -95,7 +92,7 @@ class MediaControl extends React.Component {
                 <PausePlayButton isPlaying={isPlaying} onClick={this.toggleIsPlaying}/>
 
                 <NextButton onClick={this.skipToNext}/>
-                <VolumeControl />
+                <VolumeControl spotify={this.spotifyClient} device={this.state.currentDevice}/>
             </div>
         </div>
         );
