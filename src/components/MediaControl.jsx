@@ -32,7 +32,7 @@ class MediaControl extends React.Component {
     render() {
         const { isPlaying } = this.state;
         return (
-        <div className="media-control">
+        <div className="media-container">
             <div>
                 <PreviousButton onClick={this.previousSong}/>
 

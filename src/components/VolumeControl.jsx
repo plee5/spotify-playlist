@@ -1,6 +1,8 @@
 import React from 'react';
 
 import { Direction, Slider } from 'react-player-controls';
+import { ReactComponent as SoundOn } from '../icons/sound_on.svg';
+import { ReactComponent as SoundOff } from '../icons/sound_mute.svg';
 
 const WHITE_SMOKE = '#eee'
 const GRAY = '#878c88'
@@ -74,41 +76,58 @@ class VolumeControl extends React.Component {
     
 
     render() {
+        const {
+            direction,
+            value,
+            lastValueStart,
+            lastValueEnd,
+            lastIntent,
+            lastIntentStart,
+            lastIntentEndCount,
+            isEnabled,
+        } = this.state
         return(
+            <div>
+            {(value == 0) ? (
+                <SoundOff />
+            ) : (
+                <SoundOn />
+            )}
             <Slider
-                isEnabled={this.state.isEnabled}
-                direction={this.state.direction}
+                isEnabled={isEnabled}
+                direction={direction}
                 onChange={newValue => this.setState(() => ({ value: newValue }))}
                 onChangeStart={startValue => this.setState(() => ({ lastValueStart: startValue }))}
                 onChangeEnd={endValue => this.setState(() => ({ lastValueEnd: endValue }))}
                 onIntent={intent => this.setState(() => ({ lastIntent: intent }))}
                 onIntentStart={intent => this.setState(() => ({ lastIntentStart: intent }))}
-                onIntentEnd={() => this.setState(() => ({ lastIntentEndCount: this.state.lastIntentEndCount + 1 }))}
+                onIntentEnd={() => this.setState(() => ({ lastIntentEndCount: lastIntentEndCount + 1 }))}
                 style={{
-                    width: this.state.direction === Direction.HORIZONTAL ? 200 : 8,
-                    height: this.state.direction === Direction.HORIZONTAL ? 8 : 130,
+                    width: direction === Direction.HORIZONTAL ? 200 : 8,
+                    height: direction === Direction.HORIZONTAL ? 8 : 130,
                     borderRadius: 4,
                     background: WHITE_SMOKE,
-                    transition: this.state.direction === Direction.HORIZONTAL ? 'width 0.1s' : 'height 0.1s',
-                    cursor: this.state.isEnabled === true ? 'pointer' : 'default',
+                    transition: direction === Direction.HORIZONTAL ? 'width 0.1s' : 'height 0.1s',
+                    cursor: isEnabled === true ? 'pointer' : 'default',
                   }}
             >
                 <SliderBar
-                    direction={this.state.direction}
-                    value={this.state.value}
-                    style={{ background: this.state.isEnabled ? '#72d687' : '#878c88' }}
+                    direction={direction}
+                    value={value}
+                    style={{ background: isEnabled ? '#72d687' : '#878c88' }}
                 />
                 <SliderBar
-                    direction={this.state.direction}
-                    value={this.state.lastIntent}
+                    direction={direction}
+                    value={lastIntent}
                     style={{ background: 'rgba(0, 0, 0, 0.05)' }}
                 />
                 <SliderHandle
-                    direction={this.state.direction}
-                    value={this.state.value}
-                    style={{ background: this.state.isEnabled ? '#72d687' : '#878c88' }}
+                    direction={direction}
+                    value={value}
+                    style={{ background: isEnabled ? '#72d687' : '#878c88' }}
                 />
             </Slider>
+            </div>
         );
     }
 }
