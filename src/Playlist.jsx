@@ -12,6 +12,7 @@ class Playlist extends React.Component {
            songs: [],
            search: "",
            currentDevice: "",
+           isPlaying: false
         };
     }
 
@@ -35,18 +36,26 @@ class Playlist extends React.Component {
     }
     
     async startPlayback(songId) {
-        await this.spotifyClient.play({
-            device_id: this.state.currentDevice,
-            uris: [`spotify:track:${songId}`]
-        });
+        if(this.state.isPlaying==false) {
+            await this.spotifyClient.play({
+                device_id: this.state.currentDevice,
+                uris: [`spotify:track:${songId}`]
+            });
+            this.setState({isPlaying: true})
+        }
     }
 
     async pausePlayback(songId) {
-        await this.spotifyClient.pause({
-            device_id: this.state.currentDevice,
-            uris: [`spotify:track:${songId}`]
-        })
+        if(this.state.isPlaying==true) {
+            await this.spotifyClient.pause({
+                device_id: this.state.currentDevice,
+                uris: [`spotify:track:${songId}`]
+            })
+            this.setState({isPlaying: false})
+        }
+            
     }
+    
 
     render() {
         return (
@@ -70,9 +79,6 @@ class Playlist extends React.Component {
                                     </button>
                                     <button class="ui button" onClick={e => this.pausePlayback(song.songId)}>
                                         <i class="pause icon"></i>
-                                    </button>
-                                    <button class="ui button">
-                                        <i class="x icon"></i>
                                     </button>
                                 </div>
                             </div>

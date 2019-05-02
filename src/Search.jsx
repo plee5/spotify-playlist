@@ -74,18 +74,17 @@ class SearchComp extends React.Component {
                             className="item"
                             key={song.id}
                             >
-                            {/* <div className="image">
-                                <img class="ui avatar image" src={song.album.images[0].url} />
-                            </div> */}
                             <div className="content">
                                 <p className="header">{song.name}</p>
                                 <div className="meta">
                                 <span className="date">
                                     {song.artists.map(artist => artist.name).join(", ")}
                                 </span>
-                                </div>
-                                <button class="ui right floated green button"
+                                </div> 
+                                <div className="buttons">
+                                  <button class="ui right floated green button"
                                     onClick={() => this.props.addSong(song.name, song.artists.map(artist => artist.name).join(", "), song.id)}>Add</button>
+                                </div>
                             </div>
                             </div>
                         ))}

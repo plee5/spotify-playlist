@@ -41,7 +41,6 @@ class App extends React.Component {
       songId: songId
     }
     let curPlaylist = this.state.playlistSongs;
-    console.log(newSong);
     this.setState({playlistSongs: [...curPlaylist, newSong]})
   }
 
@@ -58,9 +57,10 @@ class App extends React.Component {
         </a>
       );
     }
+
     return (
-      <div className="ui right aligned category search">
-        <div class="ui two column grid">
+      <div className="ui left aligned category search">
+        <div class="ui equal width grid">
           <div class="column">
             <SearchComp addSong={this.addSongToPlaylist}/>
           </div>
