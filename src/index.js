@@ -1,10 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom";
-
 import Spotify from "spotify-web-api-js";
-
 import "./styles.css";
-
+import { Search } from "semantic-ui-react";
+import SearchComp from "./Search.jsx";
+import Playlist from "./Playlist.jsx";
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -16,34 +16,22 @@ class App extends React.Component {
       currentDevice: "",
       playlistSongs: []
     };
-    this.onSubmit = this.onSubmit.bind(this);
     this.addSongToPlaylist = this.addSongToPlaylist.bind(this);
   }
 
   async componentDidMount() {
     if (window.location.hash) {
-      // Remove the "#"
       const queryString = window.location.hash.substring(1);
-      // Parse the access_token out
       const accessToken = new URLSearchParams(queryString).get("access_token");
       this.spotifyClient = new Spotify();
       this.spotifyClient.setAccessToken(accessToken);
-
       const { devices } = await this.spotifyClient.getMyDevices();
-      // const devices = Object.keys(devicesResp).map(key => devicesResp[key]);
       this.setState({
         authenticated: true,
         devices,
         currentDevice: devices[0].id
       });
     }
-  }
-
-  async startPlayback(songId) {
-    await this.spotifyClient.play({
-      device_id: this.state.currentDevice,
-      uris: [`spotify:track:${songId}`]
-    });
   }
 
   async addSongToPlaylist(songName, artistNames, songId) {
@@ -54,16 +42,6 @@ class App extends React.Component {
     }
     let curPlaylist = this.state.playlistSongs;
     this.setState({playlistSongs: [...curPlaylist, newSong]})
-  }
-
-  async onSubmit(ev) {
-    ev.preventDefault();
-    const {
-      tracks: { items: songs }
-    } = await this.spotifyClient.searchTracks(this.state.search, {
-      market: "us"
-    });
-    this.setState({ songs });
   }
 
   render() {
@@ -81,62 +59,12 @@ class App extends React.Component {
     }
     return (
       <div className="ui right aligned category search">
-        <form className="ui icon input" onSubmit={this.onSubmit}>
-          <input
-            type="text"
-            placeholder="Search for songs..."
-            onChange={e => this.setState({ search: e.target.value })}
-          />
-          <input type="submit" value="Search" />
-        </form>
         <div class="ui two column grid">
           <div class="column">
-          <div class="ui compact message">Current Search Results</div>
-
-            <div className="ui celled list">
-              {this.state.songs.slice(0,5).map(song => (
-                <div
-                  className="item"
-                  key={song.id}
-                  // onClick={e => this.startPlayback(song.id)}
-                >
-                  {/* <div className="image">
-                    <img class="ui avatar image" src={song.album.images[0].url} />
-                  </div> */}
-                  <div className="content">
-                    <p className="header">{song.name}</p>
-                    <div className="meta">
-                      <span className="date">
-                        {song.artists.map(artist => artist.name).join(", ")}
-                      </span>
-                    </div>
-                    <button class="ui right floated green button"
-                        onClick={this.addSongToPlaylist}>Add</button>
-                  </div>
-                </div>
-              ))}
-            </div>
+            <SearchComp addSong={() => this.addSongToPlaylist}/>
           </div>
           <div class="column">
-            <div class="ui compact message">Current Playlist</div>
-            <div className="ui celled list">
-              {this.state.playlistSongs.map(song => (
-                <div
-                  className="item"
-                  key={song.id}
-                  onClick={e => this.startPlayback(song.id)}
-                >
-                  {/* <div className="image">
-                    <img class="ui avatar image" src={song.album.images[0].url} />
-                  </div> */}
-                  <div className="content">
-                    <p className="header">{song.name}</p>
-                    <div className="meta">
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
+            <Playlist playlist={this.state.playlistSongs}/>
           </div>
         </div>
         {/* <select
