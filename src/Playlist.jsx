@@ -40,6 +40,14 @@ class Playlist extends React.Component {
             uris: [`spotify:track:${songId}`]
         });
     }
+    
+    async removePlayback(songId) {
+      this.props.playlist.filter((song) => {
+        if (song.songId == songId) {
+          song.inPlaylist = false;
+        }
+      })
+    }
 
     render() {
         return (
@@ -47,6 +55,7 @@ class Playlist extends React.Component {
                 <div class="ui compact message">Current Playlist</div>
                     <div className="ui celled list">
                     {this.props.playlist.map(song => (
+                      song.inPlaylist &&
                         <div
                         className="item"
                         key={song.songId}
@@ -56,6 +65,15 @@ class Playlist extends React.Component {
                             <img class="ui avatar image" src={song.album.images[0].url} />
                         </div> */}
                         <p className="header">{song.songName}</p>
+                        
+                        <div className="meta">
+                               {song.artistNames}
+                               <div class="ui icon right floated buttons">
+                                   <button class="ui button" onClick={e => this.removePlayback(song.songId)}>
+                                       <i class="x icon"></i>
+                                   </button>
+                                </div>
+                        </div>
                                 {/* <div className="meta">
                                 <span className="date">
                                     {song.artist}

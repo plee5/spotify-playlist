@@ -40,10 +40,14 @@ class App extends React.Component {
     let newSong = {
       songName: songName,
       artistNames: artistNames,
-      songId: songId
+      songId: songId,
+      inPlaylist: true
     }
     let curPlaylist = this.state.playlistSongs;
     console.log(newSong);
+    curPlaylist = curPlaylist.filter((song) => {
+      return song.inPlaylist;
+    })
     this.setState({playlistSongs: [...curPlaylist, newSong]})
   }
 
