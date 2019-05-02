@@ -7,11 +7,11 @@ class Playlist extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-          authenticated: false,
-          devices: [],
-          songs: [],
-          search: "",
-          currentDevice: "",
+        //   authenticated: false,
+        //   devices: [],
+        //   songs: [],
+        //   search: "",
+        //   currentDevice: "",
         };
     }
     
