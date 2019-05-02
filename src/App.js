@@ -4,8 +4,6 @@ import './App.css';
 import Playlist from "./Playlist.jsx";
 import Search from "./Search.jsx";
 
-// function App() {
-
 class App extends React.Component {
   constructor(props) {
     super(props);
