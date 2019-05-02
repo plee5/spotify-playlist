@@ -10,7 +10,7 @@ This is a Spotify client that allows users to search Spotify for songs and add t
 ## Components
 - Search: contains a toolbar to dynamically search for songs, with a drop down that allows them to add songs to the playlist
 - Playlist: allows users to see the list of songs which are currently in the playlist and allows them to play & delete them too.
-- Media Controls: allows users to play, pause, skip and seek into the currently playing song
+- Media Controls: allows users to play and pause current song. Skip and previous a work in progress
 
 ## Features
 - Search - search for your favorite songs in Spotify’s database of music
