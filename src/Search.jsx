@@ -12,7 +12,8 @@ class SearchComp extends React.Component {
           songs: [],
           search: "",
           currentDevice: "",
-          playlistSongs: []
+          playlistSongs: [],
+          isPlaying: false
         };
         this.onSubmit = this.onSubmit.bind(this);
       }
@@ -39,10 +40,15 @@ class SearchComp extends React.Component {
     
     
     async startPlayback(songId) {
-        await this.spotifyClient.play({
-            device_id: this.state.currentDevice,
-            uris: [`spotify:track:${songId}`]
-        });
+        if(!this.state.isPlaying) {
+          await this.spotifyClient.play({
+              device_id: this.state.currentDevice,
+              uris: [`spotify:track:${songId}`]
+          });
+          this.setState({
+            isPlaying: true
+          });
+        }
     }
 
       async onSubmit(ev) {
@@ -72,7 +78,6 @@ class SearchComp extends React.Component {
                             <div
                             className="item"
                             key={song.id}
-                            onClick={e => this.startPlayback(song.id)}
                             >
                             {/* <div className="image">
                                 <img class="ui avatar image" src={song.album.images[0].url} />
@@ -85,7 +90,7 @@ class SearchComp extends React.Component {
                                 </span>
                                 </div>
                                 <button class="ui right floated green button"
-                                    onClick={this.props.addSong(song.name, song.artists.name, song.id)}>Add</button>
+                                    onClick={() => this.props.addSong(song.name, song.artists.map(artist => artist.name).join(", "), song.id)}>Add</button>
                             </div>
                             </div>
                         ))}
