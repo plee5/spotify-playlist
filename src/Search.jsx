@@ -72,7 +72,6 @@ class SearchComp extends React.Component {
                             <div
                             className="item"
                             key={song.id}
-                            onClick={e => this.startPlayback(song.id)}
                             >
                             {/* <div className="image">
                                 <img class="ui avatar image" src={song.album.images[0].url} />
